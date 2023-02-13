@@ -17,10 +17,10 @@ const morgan = require('morgan');
 //     origin: 'http://localhost:3000',
 //     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 //   }
-let corsOptions = {
-    origin: 'https://lenodev.com',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
+// let corsOptions = {
+//     origin: 'https://lenodev.com',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+//   }
   
 // app.use(express.json({limit: '50mb'}));
 // app.use(express.urlencoded({limit: '50mb'}));
@@ -41,7 +41,7 @@ mongoose.connect(Url, { useNewUrlParser: true,useUnifiedTopology: true })
 
 
 
-app.use("/",cors(corsOptions),router);
+app.use("/",router);
 
 app.listen(PORT,function(){
     console.log(`app is runing on port-${PORT} `);
