@@ -31,7 +31,7 @@ app.use(morgan("dev"));
 // mongodb+srv://dinhsyduyet:<password>@cluster0.hy4q0.mongodb.net/?retryWrites=true&w=majority
 
 // var dburl   =  "mongodb://0.0.0.0:27017/demo";
- const Url = process.env.DATABASE_URL;
+ const Url = "mongodb+srv://dinhsyduyet:dinhsyduyet@cluster0.hy4q0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 console.log("dbUrl",Url)
 mongoose.connect(Url, { useNewUrlParser: true,useUnifiedTopology: true })
     .then(() => { console.log('Connected to MongoDB: %s \n ', Url) }) 
