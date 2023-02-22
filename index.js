@@ -22,7 +22,8 @@ let corsOptions = {
 //     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 //   }
 
-app.use(express.json({extended:false}));
+app.use(express.json({ extended: false, limit: '50mb' }))
+app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 50000 }))
  app.use(cors());
 app.use(morgan("dev"));
 
@@ -31,7 +32,6 @@ app.use(morgan("dev"));
 // var dburl   =  "mongodb://0.0.0.0:27017/demo";
  const Url = "mongodb+srv://dinhsyduyet:dinhsyduyet@cluster0.hy4q0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 console.log("dbUrl",Url)
-console.log("okok test",Url)
 mongoose.connect(Url, { useNewUrlParser: true,useUnifiedTopology: true })
     .then(() => { console.log('Connected to MongoDB: %s \n ', Url) }) 
     .catch((err) => { 
