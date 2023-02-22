@@ -12,6 +12,22 @@ const BlogPost = new Schema({
   slug: String,
   imageUrl:String,
   imageThumbnailUrl:String,
+  isReacted:{
+    type:Boolean,
+    default: false
+  },
+  viewCount:{
+    type:Number,
+    default: 0
+  },
+  reactionsCount:{
+    type:Number,
+    default: 0
+  },
+  commentsCount:{
+    type:Number,
+    default: 0
+  },
 
 },{ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }});
 
