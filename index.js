@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require('mongoose');
 const router = require("./router/index.js");
-require('dotenv').config()
+require('dotenv').config();
 const PORT = 3004
 const morgan = require('morgan');
 
@@ -32,7 +32,7 @@ app.use(morgan("dev"));
 // var dburl   =  "mongodb://0.0.0.0:27017/demo";
  const Url = process.env.DATABASE_URL
 console.log("dbUrl",Url)
-mongoose.connect(Url, { useNewUrlParser: true,useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true,useUnifiedTopology: true })
     .then(() => { console.log('Connected to MongoDB: %s \n ', Url) }) 
     .catch((err) => { 
         console.error("err:",err);
