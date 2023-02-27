@@ -28,7 +28,7 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const { title, body , author , description , imageUrl , imageThumbnailUrl,keyWords } = req.body;
+    const { title, body , author , description , imageUrl , keyWords,user_viewcount } = req.body;
     const handleSlug = handleSlugString(title);
     
     const datasCreate = new ModelBlog({
@@ -38,7 +38,8 @@ const createProduct = async (req, res) => {
       body: body,
       imageUrl:imageUrl,
       slug:handleSlug,
-      keyWords:keyWords
+      keyWords:keyWords,
+      user_viewcount:user_viewcount
     });
 
     datasCreate.save();
@@ -50,21 +51,18 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    const { _id, ...other} = req.body;
-    let object = {
-      ...other
-    }
-    
-    if(other.title !== undefined) {
-      object = {
-        slug:handleSlugString(other.title),
-        ...other
-      }
-    }
-    
-    const dataUpdate = await ModelBlog.findByIdAndUpdate(req.body._id,object);
+    const { _id, title } = req.body;
 
-    dataUpdate.save();
+    let newObject = {
+      ...req.body,
+      slug: handleSlugString(title),
+    };
+
+    const dataUpdate = await ModelBlog.findByIdAndUpdate(_id, newObject, {
+      new: true,
+    });
+
+    await dataUpdate.save();
     return res
       .status(201)
       .json({ data: dataUpdate, statusMessage: "Update success" });
