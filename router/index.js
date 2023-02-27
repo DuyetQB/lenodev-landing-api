@@ -8,7 +8,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/api/productAll/", getAllProduct)
-router.post("/api/product/:slug", getProductById)
+router.get("/api/product/:slug", getProductById)
 router.post("/api/createProduct", createProduct)
 router.delete("/api/deleteProductAll", deleteProductAll)
 router.post("/api/login", Login)
