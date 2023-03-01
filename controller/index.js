@@ -69,6 +69,22 @@ const updateProduct = async (req, res) => {
   } catch (error) {}
 };
 
+const updateViewProduct = async (req, res) => {
+  try {
+    const { _id,user_viewcount } = req.body;
+
+    const dataUpdate = await ModelBlog.findByIdAndUpdate(_id,{user_viewcount:user_viewcount}, {
+      new: true,
+    });
+
+    await dataUpdate.save();
+    return res
+      .status(201)
+      .json({ data: dataUpdate, statusMessage: "Update success" });
+  } catch (error) {}
+};
+
+
 const deleteProductById = async (req, res) => {
   try {
 
@@ -105,6 +121,7 @@ module.exports = {
   getProductById,
   createProduct,
   updateProduct,
+  updateViewProduct,
   deleteProductById,
   deleteProductAll,
   findProductByName,

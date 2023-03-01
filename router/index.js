@@ -1,6 +1,6 @@
 const { getAllProduct , createProduct , updateProduct ,
      deleteProductById , getProductById ,deleteProductAll ,
-      findProductByName } = require("../controller/index");
+      findProductByName, updateViewProduct } = require("../controller/index");
 
 const { Login, Signup , Profile , userRefreshToken }= require("../controller/user");
 const { Middleware } = require("../middleware/index");
@@ -14,6 +14,7 @@ router.delete("/api/deleteProductAll", deleteProductAll)
 router.post("/api/login", Login)
 router.post("/api/signup", Signup)
 router.put("/api/updateProduct/", updateProduct)
+router.patch("/api/collect-u-v/", updateViewProduct)
 router.delete("/api/deleteProduct/:id", deleteProductById)
 router.get("/api/profile", Middleware, Profile)
 router.post("/api/refresh-token", userRefreshToken)
