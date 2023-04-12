@@ -9,16 +9,10 @@ const router = express.Router();
 
 router.get("/api/productAll/", getAllProduct)
 router.get("/api/product/:slug", getProductById)
-router.post("/api/createProduct", createProduct)
-router.delete("/api/deleteProductAll", deleteProductAll)
 router.post("/api/login", Login)
 router.post("/api/signup", Signup)
-router.put("/api/updateProduct/", updateProduct)
-router.patch("/api/collect-u-v/", updateViewProduct)
-router.delete("/api/deleteProduct/:id", deleteProductById)
-router.get("/api/profile", Middleware, Profile)
+router.get("/api/profile", Profile)
 router.post("/api/refresh-token", userRefreshToken)
-router.get("/api/search", findProductByName)
 
 
 module.exports = router;
