@@ -16,7 +16,7 @@ const getProductById = async (req, res) => {
     const url = `https://lenodevapiadmin.onrender.com/api/product/${req.params.slug}`;
     const datasResponse = await axios.get(url)
 
-  return res.status(200).json({ data: datasResponse?.data, statusMessage: "ok" });
+  return res.status(200).json({ data: datasResponse?.data.data, statusMessage: "ok" });
 
   } catch (error) {
     console.log("err:", error);
