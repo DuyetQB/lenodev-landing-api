@@ -3,7 +3,7 @@
 
 const getAllProduct = async (req, res) => {
   try {
-    const url = `https://lenodevapiadmin.onrender.com/api/productAll`
+    const url = `https://lenodevapiadmin.onrender.com/api/public-getAllProduct`
     const datasResponse = await axios.get(url);
   return res.status(200).json({ data: datasResponse?.data, statusMessage: "ok" });
   } catch (error) {
