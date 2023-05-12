@@ -7,12 +7,10 @@ const router = require("./router/index.js");
 require('dotenv').config();
 const PORT = 3004
 const morgan = require('morgan');
+const apicache = require("apicache");
+//configure apicache 
+let cache = apicache.middleware
 
-
-// mongoose.connect('mongodb://localhost/trai-ga',{
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-// });
 let corsOptions = {
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -26,24 +24,10 @@ app.use(express.json({ extended: false, limit: '50mb' }))
 app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 50000 }))
  app.use(cors());
 app.use(morgan("dev"));
-
-// mongodb+srv://dinhsyduyet:<password>@cluster0.hy4q0.mongodb.net/?retryWrites=true&w=majority
-
-// var dburl   =  "mongodb://0.0.0.0:27017/demo";
-//  const Url = process.env.DATABASE_URL
-// console.log("dbUrl",Url)
-// mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true,useUnifiedTopology: true })
-//     .then(() => { console.log('Connected to MongoDB: %s \n ', Url) }) 
-//     .catch((err) => { 
-//         console.error("err:",err);
-//      });
+app.use(cache('5 minutes'));
 
 app.use("/",router);
 
 app.listen(PORT,function(){
     console.log(`app is runing on port-${PORT} `);
 })
-
-// "engines": {
-//     "node": ">=16"
-//   },
